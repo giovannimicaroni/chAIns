@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         AnimatePlayer();
     }
 
-    // FixedUpdate is called 50x per second
+    // FixedUpdate is called 50x per second - Henrique esteve por aqui hahahhaha
     void FixedUpdate()
     {
         
