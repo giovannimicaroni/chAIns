@@ -1,0 +1,4 @@
+repository "melhorJogo/melhorJogo@4674124706099@cloud"
+  path "/"
+    br "/main"
+    co "/main"
