@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     public float speed = 5f;
     public float jumpForce = 7f;
+    public float dashForce = 7f;
 
     public Rigidbody2D rigidBody;
     public Animator animator;
@@ -18,6 +19,9 @@ public class Player : MonoBehaviour
     private float horizontalInput;
     private bool jumpPressed;
     private bool isGrounded;
+    private bool dashPressed;
+    private bool dashAllowed = true;
+    private bool isDashing = false;
 
     private void Awake()
     {
@@ -28,9 +32,17 @@ public class Player : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         jumpPressed = Input.GetButtonDown("Jump");
+        dashPressed = Input.GetKeyDown(KeyCode.LeftShift);
         CheckGrounded();
-        MovePlayer();
-        HandleJump();
+
+        // Nao quero o jogador fazendo coisa enquanto da o dash. A ordem dentro do if importa, pois MovePlayer e Handle Jump mudam a velocidade do jogador
+        if (!isDashing)
+        {
+            MovePlayer();
+            HandleJump();
+            StartCoroutine(Dash());
+        }
+        
         AnimatePlayer();
     }
 
@@ -78,5 +90,30 @@ public class Player : MonoBehaviour
     private void Flip()
     {
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+    }
+
+    private IEnumerator Dash()
+    {
+        if (dashPressed && dashAllowed)
+        {
+            dashAllowed = false;
+            isDashing = true;
+
+            // Desativa a gravidade
+            float originalGravity = rigidBody.gravityScale;
+            rigidBody.gravityScale = 0;
+            rigidBody.velocity = new Vector2(transform.localScale.x * dashForce , 0);
+
+            yield return new WaitForSeconds(0.1f);
+
+            rigidBody.gravityScale = originalGravity;
+            isDashing = false;
+
+            // Delay no proximo dash
+            yield return new WaitForSeconds(0.5f);
+
+            dashAllowed = true;
+
+        }
     }
 }
