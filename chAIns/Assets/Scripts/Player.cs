@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public Animator animator;
     public Transform groundCheck;
     public LayerMask groundLayer;
+    public PlayerAttack playerAttack;
 
     public float groundCheckRadius = 0.2f;
 
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
     private bool dashPressed;
     private bool dashAllowed = true;
     private bool isDashing = false;
+    private bool attackPressed = false;
 
     private void Awake()
     {
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         jumpPressed = Input.GetButtonDown("Jump");
         dashPressed = Input.GetKeyDown(KeyCode.LeftShift);
+        attackPressed = Input.GetKeyDown(KeyCode.E);
         CheckGrounded();
 
         // Nao quero o jogador fazendo coisa enquanto da o dash. A ordem dentro do if importa, pois MovePlayer e Handle Jump mudam a velocidade do jogador
@@ -41,6 +44,12 @@ public class Player : MonoBehaviour
             MovePlayer();
             HandleJump();
             StartCoroutine(Dash());
+        }
+
+        // Esse if podia ta la dentro, mas nao queria ficar nestando
+        if (!isDashing && attackPressed)
+        {
+            playerAttack.Attack();
         }
         
         AnimatePlayer();

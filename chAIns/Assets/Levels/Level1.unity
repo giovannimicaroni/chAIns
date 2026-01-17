@@ -9024,6 +9024,7 @@ GameObject:
   - component: {fileID: 404558041}
   - component: {fileID: 404558040}
   - component: {fileID: 404558042}
+  - component: {fileID: 404558043}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -9203,7 +9204,21 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  playerAttack: {fileID: 404558043}
   groundCheckRadius: 0.2
+--- !u!114 &404558043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404558036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f79d4e12d073134a938c04e0ca7c976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 404558037}
 --- !u!1001 &405280066
 PrefabInstance:
   m_ObjectHideFlags: 0
