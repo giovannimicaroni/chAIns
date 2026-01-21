@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    
+
     public float speed = 5f;
     public float jumpForce = 7f;
     public float dashForce = 7f;
@@ -30,6 +32,7 @@ public class Player : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
+
     private void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
@@ -53,6 +56,7 @@ public class Player : MonoBehaviour
         }
         
         AnimatePlayer();
+
     }
 
     // FixedUpdate is called 50x per second - 
