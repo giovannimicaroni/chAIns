@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
-
-    public HealthBar healthBar;
+    
 
     public float speed = 5f;
     public float jumpForce = 7f;
@@ -32,15 +29,9 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-        currentHealth = maxHealth;
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
-    {
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
-    }
 
     private void Update()
     {
@@ -66,24 +57,12 @@ public class Player : MonoBehaviour, IDamageable
         
         AnimatePlayer();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            DealDamage(10);
-        }
     }
 
     // FixedUpdate is called 50x per second - 
     void FixedUpdate()
     {
         
-    }
-
-    public void DealDamage(float damage)
-    {
-        currentHealth -= (int)damage;
-
-        healthBar.SetHealth(currentHealth);
-
     }
 
     private void CheckGrounded()
