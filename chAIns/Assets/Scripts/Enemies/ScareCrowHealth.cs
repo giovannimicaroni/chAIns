@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class ScareCrowHealth : MonoBehaviour, IDamageable
 {
-    public float health = 10;
+    public int maxHealth = 10;
+    public int currentHealt;
 
-    public void DealDamage(float demage)
+    public HealthBar healthBar;
+
+    public void Awake()
     {
-        health -= demage;
+        currentHealt = maxHealth;
+        healthBar.SetHealth(currentHealt);
+    }
+
+    public void DealDamage(float damage)
+    {
+        currentHealt -= (int)damage;
+        healthBar.SetHealth(currentHealt);
         
-        if(health <= 0)
+        if(currentHealt <= 0)
         {
             Destroy(gameObject);
         }
