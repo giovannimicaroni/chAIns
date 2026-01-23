@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     private bool dashAllowed = true;
     private bool isDashing = false;
     private bool attackPressed = false;
+    private bool isKnockedBack = false;
 
     private void Awake()
     {
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour
         CheckGrounded();
 
         // Nao quero o jogador fazendo coisa enquanto da o dash. A ordem dentro do if importa, pois MovePlayer e Handle Jump mudam a velocidade do jogador
-        if (!isDashing)
+        if (!isDashing && !isKnockedBack)
         {
             MovePlayer();
             HandleJump();
@@ -50,7 +51,7 @@ public class Player : MonoBehaviour
         }
 
         // Esse if podia ta la dentro, mas nao queria ficar nestando
-        if (!isDashing && attackPressed)
+        if (!isDashing && attackPressed && !isKnockedBack)
         {
             playerAttack.Attack();
         }
@@ -128,5 +129,15 @@ public class Player : MonoBehaviour
             dashAllowed = true;
 
         }
+    }
+
+    public IEnumerator KnockBack(float knockBackForceX, float knockBackForceY)
+    {
+        isKnockedBack = true;
+        rigidBody.AddForce(new Vector2(knockBackForceX, knockBackForceY), ForceMode2D.Impulse); ;
+
+        yield return new WaitForSeconds(0.1f);
+
+        isKnockedBack = false;
     }
 }

@@ -9309,6 +9309,7 @@ GameObject:
   - component: {fileID: 404558040}
   - component: {fileID: 404558042}
   - component: {fileID: 404558043}
+  - component: {fileID: 404558044}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -9512,6 +9513,22 @@ MonoBehaviour:
   timeBetweenAttacks: 0.8
   rigidBody: {fileID: 0}
   recoilForce: 100
+--- !u!114 &404558044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404558036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c19834d101143c47bf0099ea31d2b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  anim: {fileID: 404558037}
+  healthBar: {fileID: 1033755489}
 --- !u!1001 &405280066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12980,6 +12997,7 @@ GameObject:
   - component: {fileID: 716277893}
   - component: {fileID: 716277892}
   - component: {fileID: 716277895}
+  - component: {fileID: 716277896}
   m_Layer: 7
   m_Name: ScareCrow
   m_TagString: Untagged
@@ -13105,6 +13123,19 @@ MonoBehaviour:
   maxHealth: 10
   currentHealt: 0
   healthBar: {fileID: 806014436}
+--- !u!114 &716277896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716277891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25fab220dc1d95048aa2489a084d494a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockBackForce: 200
 --- !u!1001 &722932707
 PrefabInstance:
   m_ObjectHideFlags: 0
